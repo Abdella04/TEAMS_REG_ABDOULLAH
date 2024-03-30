@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        border: solid;
+        padding: 20px;
+        width: 400px;
+    }
+
+    input {
+        width: 200px
+    }
+
+    button {
+        width: 100px;
+    }
+
+    tr:hover {
+        background-color: green;
+    }
+</style>
+
+<body>
+    <button type="button" onclick="ajouter()">Ajouter</button>
+    <button type="button" onclick="Suprimer()">Suprimer</button>
+    <form action="" id="form">
+        <h2>Liste des Produits</h2>
+        <div id="divv"></div>
+    </form>
+    <table border="1" id="tab">
+        <tr>
+            <th>Code</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Categorie</th>
+        </tr>
+    </table>
+
+    <script>
+        function ajouter() {
+            document.getElementById("form").innerHTML =
+                '<form action="" id="form">' +
+                '<h2>Liste des Produits</h2>' +
+                'Code<input type="text" name="" id="Code" placeholder="Code">' +
+                'Titre<input type="text" name="" id="Titre" placeholder="Titre">' +
+                'Description<input type="text" name="" id="Description" placeholder="Description">' +
+                'Prix<input type="text" name="" id="Prix" placeholder="Prix">' +
+                'Categorie<input type="text" name="" id="Categorie" placeholder="Categorie">' +
+                '<button type="button" onclick="save()">Sauvegarder</button>' +
+                '<button type="button" onclick="anuuler()">Annuler</button>' +
+                '<button type="button" onclick="vide()">Vider</button>' +
+                '<button type="button" onclick="DispCat()">Display Categorie</button>' 
+                '</form>';
+        }
+        function save() {
+            let Code = document.getElementById("Code").value
+            let Titre = document.getElementById("Titre").value
+            let Description = document.getElementById("Description").value
+            let Prix = document.getElementById("Prix").value
+            let Categorie = document.getElementById("Categorie").value
+            let table = document.getElementById("tab")
+            let template = `
+            <tr>
+                <th>${Code}</th>
+                <th>${Titre}</th>
+                <th>${Description}</th>
+                <th>${Prix}</th>
+                <th>${Categorie}</th>
+            </tr>`;
+            table.innerHTML += template
+        }
+        function anuuler() {
+            let table = document.getElementById("tab")
+            let rowCount = table.rows.length
+            if (rowCount > 1) {
+                table.deleteRow(rowCount - 1)
+            }
+        }
+        function vide() {
+            document.getElementById("Code").value = ""
+            document.getElementById("Titre").value = ""
+            document.getElementById("Description").value = ""
+            document.getElementById("Prix").value = ""
+            document.getElementById("Categorie").value = ""
+        }
+        function Suprimer() {
+            document.getElementById("form").reset();
+            document.getElementById("form").innerHTML = "<h2>Liste des Produits</h2>";
+        }
+        class Produit {
+            constructor(Code, Titre, Description, Prix, Categorie) {
+                this.Code = Code;
+                this.Titre = Titre;
+                this.Description = Description;
+                this.Prix = Prix;
+                this.Categorie = Categorie;
+            }
+        }
+        function DispCat(){
+        document.getElementById("divv").innerHTML=Categorie}
+    
+        let produit1 = new Produit("001", "Produit 1", "Description du Produit 1", 10.99, "Categorie 1");
+        let produit2 = new Produit("002", "Produit 2", "Description du Produit 2", 20.50, "Categorie 2");
+
+    
+    </script>
+    
+</body>
+
+</html>

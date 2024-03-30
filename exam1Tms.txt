@@ -1,0 +1,10 @@
+.a
+.d
+.a x b
+.a
+.b
+.c x b
+.b x c
+.b x a
+.c x d
+.a 
